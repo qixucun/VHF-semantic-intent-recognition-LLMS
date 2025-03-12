@@ -1,0 +1,49 @@
+import json
+from openai import OpenAI
+
+
+def extract_ship_info(sentence, temperature=0.3):
+    """
+    调用 API 提取船舶信息
+    :param sentence: 需要分析的句子
+    :param temperature: 随机性控制（默认 0.3）
+    :param n: 生成响应数量（默认 1）
+    :return: 解析后的结果列表（字典格式）
+    """
+    client = OpenAI(
+        api_key=" your API key",
+        base_url="https://api.deepseek.com/v1"
+    )
+
+    try:
+        completion = client.chat.completions.create(
+            model="deepseek-chat",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "请识别下面以下句子里的第一个船舶名称及其对应的意图。如果船舶的意图是进入黄浦江，请将意图标记为1；否则，标记为0，输出的 JSON 需遵守以下的格式：\n\n{\n  \"船舶名称\": <句子内第一个船名>,\n  \"意图\": <0或 1>\n }"
+                   
+                },
+                {
+                    "role": "user",
+                    "content": sentence
+                }
+            ],
+            temperature=temperature
+        )
+
+        results = []
+        for choice in completion.choices:
+            # 解析返回的 JSON 字符串为字典
+            response = json.loads(choice.message.content)
+            results.append(response)
+        return results
+    except Exception as e:
+        print(f"处理句子失败: {sentence}\n错误信息: {e}")
+        return []
+if __name__ == '__main__':
+    sentence ="吴淞控制中心 HAO HANG 两洞洞七在九号锚地申请起锚靠外两上海码头。"
+    text_test=extract_ship_info(sentence, temperature=0.3)
+    # json_str = text_test.replace("'", '"')
+    # text_test1 = json.loads(text_test)
+    print(type(text_test[0]['意图']))
