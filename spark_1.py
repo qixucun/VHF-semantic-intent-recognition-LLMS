@@ -13,9 +13,9 @@ import websocket
 import pandas as pd
 
 # ====== 请替换成你自己的讯飞开放平台参数 ======
-APPID = "9b679ce3"
-APIKey = "b33f99a582fd98622e29c17d8e346f82"
-APISecret = "NWU0N2ZiNTQxMTk0YWRhNTEwOGViM2Y0"
+APPID = "your id"
+APIKey = "your API key"
+APISecret = "your secret"
 SPARK_URL = "wss://spark-api.xf-yun.com/v4.0/chat"
 DOMAIN = "4.0Ultra"
 
@@ -154,3 +154,4 @@ if __name__ == '__main__':
     output_file = "results_spark.xlsx"
     df_result = process_excel(input_file, output_file)
     print("结果已保存到:", output_file)
+
