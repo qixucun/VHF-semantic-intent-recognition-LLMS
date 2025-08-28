@@ -10,19 +10,19 @@ from openai import OpenAI
 ########################
 MODEL_KEYS = {
     "deepseek": {
-        "api_key": "sk-6bed7be7eaca4a178ab1e3f6092beafa",
+        "api_key": "your api_key",
         "base_url": "https://api.deepseek.com/v1"
     },
     "glm": {
-        "api_key": "a8935e442f91497b9c797717855b502e.Opf2RYP4qc8AFLs1",
+        "api_key": "your api_key",
         "base_url": "https://open.bigmodel.cn/api/paas/v4/"
     },
     "qwen": {
-        "api_key": "sk-2b3a948196744bd38d68149190109468",
+        "api_key": "your api_key",
         "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1"
     },
     "wenxin": {
-        "api_key": "f155f53e0533a16936b75e5e7195e43fe3fa76e5",
+        "api_key": "your api_key",
         "base_url": "https://aistudio.baidu.com/llm/lmapi/v3"
     }
 }
@@ -132,3 +132,4 @@ if __name__ == '__main__':
 
     df_result = process_excel(input_file, output_file, model_type)
     print("结果已保存到:", output_file)
+
